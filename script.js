@@ -689,3 +689,33 @@ document.addEventListener('keydown', (e) => {
 });
 
 console.log('%c📚 Education & Skills Modals Loaded!', 'color: #10b981; font-size: 14px; font-weight: bold;');
+
+// ========== IMAGE ROTATION ==========
+function rotateImages(containerSelector, imageClass) {
+    const container = document.querySelector(containerSelector);
+    if (!container) return;
+    
+    const images = container.querySelectorAll(imageClass);
+    if (images.length === 0) return;
+    
+    let currentIndex = 0;
+    
+    setInterval(() => {
+        // Remove active class from current image
+        images[currentIndex].classList.remove('active');
+        
+        // Move to next image
+        currentIndex = (currentIndex + 1) % images.length;
+        
+        // Add active class to next image
+        images[currentIndex].classList.add('active');
+    }, 3000); // Rotate every 3 seconds
+}
+
+// Initialize image rotation for hero section
+rotateImages('.hero-image-container', '.hero-image');
+
+// Initialize image rotation for about section
+rotateImages('.about-image-container', '.about-img');
+
+console.log('%c🔄 Image Rotation Activated! (3 seconds interval)', 'color: #8b5cf6; font-size: 14px; font-weight: bold;');
