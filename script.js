@@ -323,17 +323,6 @@ window.addEventListener('scroll', () => {
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
 
-// ========== PARALLAX EFFECT ON SCROLL ==========
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const parallaxElements = document.querySelectorAll('.hero-image');
-    
-    parallaxElements.forEach(element => {
-        const speed = 0.3;
-        element.style.transform = `translateY(${scrolled * speed}px)`;
-    });
-});
-
 console.log('%c🚀 Portfolio Loaded Successfully!', 'color: #06b6d4; font-size: 20px; font-weight: bold;');
 console.log('%c👨‍💻 Built by Shubham Mishra', 'color: #3b82f6; font-size: 14px;');
 

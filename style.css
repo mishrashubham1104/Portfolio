@@ -1537,6 +1537,15 @@ footer {
     .resume-nav-link {
         margin-top: 1rem;
     }
+    
+    /* Hide about section image on mobile and tablet */
+    .about-image {
+        display: none;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Additional responsive styles for certifications */
@@ -1946,6 +1955,7 @@ footer {
     width: 200px;
     height: 200px;
     margin: 0 auto 2rem;
+    z-index: 10;
 }
 
 .hero-image-container .hero-image {
@@ -1961,6 +1971,7 @@ footer {
     opacity: 0;
     transition: opacity 1s ease-in-out;
     animation: profileFloat 6s ease-in-out infinite;
+    will-change: transform;
 }
 
 .hero-image-container .hero-image.active {
