@@ -369,34 +369,8 @@ if (contactFormMain) {
             }, 8000);
         }, 1500);
         
-        /* 
+        
         // For actual backend implementation, uncomment and modify:
-        fetch('your-backend-endpoint', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                name: name,
-                email: email,
-                subject: subject,
-                message: message
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            formStatus.className = 'form-status success';
-            formStatus.textContent = 'Message sent successfully!';
-            contactFormMain.reset();
-        })
-        .catch(error => {
-            formStatus.className = 'form-status error';
-            formStatus.textContent = 'Failed to send message. Please try again.';
-        })
-        .finally(() => {
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-        });
-        */
+       
     });
 }
