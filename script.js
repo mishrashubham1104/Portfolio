@@ -332,3 +332,71 @@ window.addEventListener('scroll', () => {
 
 console.log('%c🚀 Portfolio Loaded Successfully!', 'color: #06b6d4; font-size: 20px; font-weight: bold;');
 console.log('%c👨‍💻 Built by Shubham Mishra', 'color: #3b82f6; font-size: 14px;');
+
+// ========== CONTACT FORM HANDLING ==========
+const contactFormMain = document.getElementById('contactForm');
+if (contactFormMain) {
+    contactFormMain.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const formStatus = document.getElementById('formStatus');
+        const formData = new FormData(contactFormMain);
+        
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const subject = formData.get('subject');
+        const message = formData.get('message');
+        
+        // Show loading state
+        const submitBtn = contactFormMain.querySelector('.form-submit-btn');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = true;
+        
+        // Simulate sending (replace with actual backend call)
+        setTimeout(() => {
+            formStatus.className = 'form-status success';
+            formStatus.textContent = `Thank you, ${name}! Your message has been received. I'll get back to you at ${email} soon!`;
+            contactFormMain.reset();
+            
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            
+            // Hide message after 8 seconds
+            setTimeout(() => {
+                formStatus.style.display = 'none';
+            }, 8000);
+        }, 1500);
+        
+        /* 
+        // For actual backend implementation, uncomment and modify:
+        fetch('your-backend-endpoint', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                subject: subject,
+                message: message
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            formStatus.className = 'form-status success';
+            formStatus.textContent = 'Message sent successfully!';
+            contactFormMain.reset();
+        })
+        .catch(error => {
+            formStatus.className = 'form-status error';
+            formStatus.textContent = 'Failed to send message. Please try again.';
+        })
+        .finally(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        });
+        */
+    });
+}

@@ -16,7 +16,11 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><a href="#certifications">Certifications</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><a href="Shubham_Mishra_Resume.pdf" download="Shubham_Mishra_Resume.pdf" class="resume-nav-link">
+                <i class="fas fa-download"></i> Resume
+            </a></li>
         </ul>
         <div class="hamburger">
             <span></span>
@@ -94,6 +98,9 @@
                 </div>
 
                 <div class="project-card scroll-animate">
+                    <div class="project-image-container">
+                        <img src="NurtureCare.jpeg" alt="NurtureCare Project" class="project-img">
+                    </div>
                     <div class="project-header">
                         <div class="project-icon">
                             <i class="fas fa-leaf"></i>
@@ -109,6 +116,31 @@
                     <a href="https://github.com/mishrashubham1104/nurturecare" target="_blank" class="project-link">
                         View Repository <i class="fas fa-external-link-alt"></i>
                     </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="certifications scroll-animate">
+            <h2 class="section-title">Certifications</h2>
+            <div class="certifications-grid">
+                <div class="certification-card">
+                    <div class="certification-image">
+                        <img src="LetsUpgrade.jpeg" alt="React Bootcamp Certificate" class="cert-img">
+                    </div>
+                    <div class="certification-content">
+                        <div class="cert-badge">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h3>React Bootcamp</h3>
+                        <p class="cert-issuer">LetsUpgrade</p>
+                        <p class="cert-description">Successfully completed comprehensive React.js bootcamp covering modern React development, hooks, state management, and best practices.</p>
+                        <div class="cert-tags">
+                            <span class="tag">React.js</span>
+                            <span class="tag">Frontend</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -173,12 +205,85 @@
                 </a>
             </div>
         </section>
+
+        <!-- Contact Form Section -->
+        <section class="contact-form-section scroll-animate">
+            <div class="contact-form-container">
+                <div class="form-left">
+                    <h2>Get In Touch</h2>
+                    <p class="form-intro">Have a question or want to work together? Drop me a message and I'll get back to you as soon as possible!</p>
+                    <div class="contact-info-list">
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>sm0701388@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Location</h4>
+                                <p>Available for Remote Work</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>Response Time</h4>
+                                <p>Within 24 hours</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-right">
+                    <form id="contactForm" class="contact-form-main">
+                        <div class="form-group-row">
+                            <div class="form-group">
+                                <label for="name">
+                                    <i class="fas fa-user"></i> Your Name
+                                </label>
+                                <input type="text" id="name" name="name" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">
+                                    <i class="fas fa-envelope"></i> Your Email
+                                </label>
+                                <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">
+                                <i class="fas fa-tag"></i> Subject
+                            </label>
+                            <input type="text" id="subject" name="subject" placeholder="Project Inquiry" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">
+                                <i class="fas fa-comment"></i> Message
+                            </label>
+                            <textarea id="message" name="message" rows="6" placeholder="Tell me about your project or inquiry..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary form-submit-btn">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                        
+                        <div id="formStatus" class="form-status"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
     <footer>
-        &copy; 2026 Shubham Mishra. All rights
-        </footer>
+        <p>&copy; 2026 Shubham Mishra. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
 </html>
