@@ -6,8 +6,8 @@ if (heroText) {
     
     const typingText = document.getElementById('typingText');
     const texts = [
-        { text: 'FullStack Developer', color: 'rgba(78, 246, 59, 0.79)' },      // Blue
-        { text: 'MERN Stack Specialist', color: '#d406a4c4' },     // Cyan
+        { text: 'Full Stack Developer', color: '#3b82f6' },      // Blue
+        { text: 'MERN Stack Specialist', color: '#06b6d4' },     // Cyan
         { text: 'Problem Solver', color: '#8b5cf6' },            // Purple
         { text: 'Code Enthusiast', color: '#10b981' }            // Green
     ];
@@ -632,3 +632,60 @@ function setActiveNavLink() {
 setActiveNavLink();
 
 console.log('%c🎯 Active Navigation Highlighting Enabled!', 'color: #06b6d4; font-size: 14px; font-weight: bold;');
+
+// ========== MODAL FUNCTIONALITY ==========
+const educationBtn = document.getElementById('educationBtn');
+const skillsBtn = document.getElementById('skillsBtn');
+const educationModal = document.getElementById('educationModal');
+const skillsModal = document.getElementById('skillsModal');
+const closeButtons = document.querySelectorAll('.close-modal');
+
+// Open Education Modal
+if (educationBtn) {
+    educationBtn.addEventListener('click', () => {
+        educationModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+}
+
+// Open Skills Modal
+if (skillsBtn) {
+    skillsBtn.addEventListener('click', () => {
+        skillsModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+}
+
+// Close Modal Function
+function closeModal(modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Close buttons
+closeButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        const modalId = this.getAttribute('data-modal');
+        const modal = document.getElementById(modalId);
+        closeModal(modal);
+    });
+});
+
+// Close modal when clicking outside
+window.addEventListener('click', (e) => {
+    if (e.target.classList.contains('modal')) {
+        closeModal(e.target);
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const activeModal = document.querySelector('.modal.active');
+        if (activeModal) {
+            closeModal(activeModal);
+        }
+    }
+});
+
+console.log('%c📚 Education & Skills Modals Loaded!', 'color: #10b981; font-size: 14px; font-weight: bold;');
