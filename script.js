@@ -708,3 +708,40 @@ rotateImages('.hero-image-container', '.hero-image');
 rotateImages('.about-image-container', '.about-img');
 
 console.log('%c🔄 Image Rotation Activated! (3 seconds interval)', 'color: #8b5cf6; font-size: 14px; font-weight: bold;');
+
+// ========== AUTO-HIDE NAVIGATION ON SCROLL ==========
+let ScrollTop = 0;
+const navbar = document.querySelector('nav');
+let scrollTimeout;
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // Clear the timeout
+    clearTimeout(scrollTimeout);
+    
+    // If at the very top, always show navbar
+    if (currentScroll <= 50) {
+        navbar.style.transform = 'translateY(0)';
+        navbar.style.opacity = '1';
+    }
+    // Scrolling down - hide navbar
+    else if (currentScroll > ScrollTop && currentScroll > 100) {
+        navbar.style.transform = 'translateY(-100%)';
+        navbar.style.opacity = '0';
+    }
+    // Scrolling up - show navbar
+    else if (currentScroll < ScrollTop) {
+        navbar.style.transform = 'translateY(0)';
+        navbar.style.opacity = '1';
+    }
+    
+    ScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    
+    // Add a small delay before hiding to prevent flickering
+    scrollTimeout = setTimeout(() => {
+        // Optional: Add any delayed actions here
+    }, 150);
+});
+
+console.log('%c📍 Auto-Hide Navigation Activated!', 'color: #8b5cf6; font-size: 14px; font-weight: bold;');

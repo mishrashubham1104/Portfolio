@@ -272,7 +272,9 @@ nav {
     align-items: center;
     z-index: 1000;
     border-bottom: 1px solid var(--border-color);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, background 0.3s ease;
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .logo {
