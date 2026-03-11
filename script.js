@@ -2,14 +2,14 @@
 const heroText = document.querySelector('.hero p');
 if (heroText) {
     const originalText = heroText.innerHTML;
-    heroText.innerHTML = `<span class="typing-container"><span class="typing-text" id="typingText"></span></span>`;
+    heroText.innerHTML = `<span class="typing-container"><span class="typing-text" id="typingText"></span></span><br>Building responsive, role-based web applications with modern technologies`;
     
     const typingText = document.getElementById('typingText');
     const texts = [
-        'Full Stack Developer',
-        'MERN Stack Specialist', 
-        'Problem Solver',
-        'Code Enthusiast'
+        { text: 'FullStack Developer', color: 'rgba(78, 246, 59, 0.79)' },      // Blue
+        { text: 'MERN Stack Specialist', color: '#d406a4c4' },     // Cyan
+        { text: 'Problem Solver', color: '#8b5cf6' },            // Purple
+        { text: 'Code Enthusiast', color: '#10b981' }            // Green
     ];
     let textIndex = 0;
     let charIndex = 0;
@@ -17,7 +17,11 @@ if (heroText) {
     let typingSpeed = 150;
 
     function typeEffect() {
-        const currentText = texts[textIndex];
+        const currentItem = texts[textIndex];
+        const currentText = currentItem.text;
+        
+        // Update color
+        typingText.style.color = currentItem.color;
         
         if (isDeleting) {
             typingText.textContent = currentText.substring(0, charIndex - 1);
@@ -568,3 +572,63 @@ document.addEventListener('mousemove', (e) => {
 });
 
 console.log('%c🎨 Enhanced Background Animations Loaded!', 'color: #06b6d4; font-size: 16px; font-weight: bold;');
+
+// ========== ACTIVE NAVIGATION LINK HIGHLIGHTING ==========
+function setActiveNavLink() {
+    const navLinks = document.querySelectorAll('.nav-links a:not(.resume-nav-link)');
+    const sections = document.querySelectorAll('section[id]');
+    
+    // Remove active class from all links
+    function removeActiveClasses() {
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+        });
+    }
+    
+    // Add active class based on scroll position
+    function highlightNavOnScroll() {
+        const scrollY = window.pageYOffset;
+        
+        sections.forEach(section => {
+            const sectionHeight = section.offsetHeight;
+            const sectionTop = section.offsetTop - 100;
+            const sectionId = section.getAttribute('id');
+            
+            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                removeActiveClasses();
+                const activeLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
+                if (activeLink && !activeLink.classList.contains('resume-nav-link')) {
+                    activeLink.classList.add('active');
+                }
+            }
+        });
+        
+        // If at top of page, activate Home
+        if (scrollY < 100) {
+            removeActiveClasses();
+            const homeLink = document.querySelector('.nav-links a[href="#home"]');
+            if (homeLink) {
+                homeLink.classList.add('active');
+            }
+        }
+    }
+    
+    // Click event for navigation links
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            removeActiveClasses();
+            this.classList.add('active');
+        });
+    });
+    
+    // Scroll event
+    window.addEventListener('scroll', highlightNavOnScroll);
+    
+    // Set initial active state
+    highlightNavOnScroll();
+}
+
+// Initialize active navigation highlighting
+setActiveNavLink();
+
+console.log('%c🎯 Active Navigation Highlighting Enabled!', 'color: #06b6d4; font-size: 14px; font-weight: bold;');
