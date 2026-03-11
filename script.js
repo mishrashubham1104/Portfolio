@@ -369,8 +369,202 @@ if (contactFormMain) {
             }, 8000);
         }, 1500);
         
-        
+        /* 
         // For actual backend implementation, uncomment and modify:
-       
+        fetch('your-backend-endpoint', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                subject: subject,
+                message: message
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            formStatus.className = 'form-status success';
+            formStatus.textContent = 'Message sent successfully!';
+            contactFormMain.reset();
+        })
+        .catch(error => {
+            formStatus.className = 'form-status error';
+            formStatus.textContent = 'Failed to send message. Please try again.';
+        })
+        .finally(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        });
+        */
     });
 }
+
+// ========== ENHANCED BACKGROUND ANIMATIONS ==========
+
+// Create floating dots animation
+function createFloatingDots() {
+    const dotsContainer = document.createElement('div');
+    dotsContainer.className = 'floating-dots';
+    dotsContainer.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+    `;
+    
+    for (let i = 0; i < 30; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'floating-dot';
+        
+        const size = Math.random() * 4 + 2;
+        const left = Math.random() * 100;
+        const animationDuration = Math.random() * 10 + 15;
+        const animationDelay = Math.random() * 5;
+        const opacity = Math.random() * 0.3 + 0.1;
+        
+        dot.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            background: radial-gradient(circle, rgba(6, 182, 212, ${opacity}), rgba(59, 130, 246, ${opacity}));
+            border-radius: 50%;
+            left: ${left}%;
+            bottom: -20px;
+            animation: floatUp ${animationDuration}s ease-in ${animationDelay}s infinite;
+            box-shadow: 0 0 ${size * 3}px rgba(6, 182, 212, ${opacity});
+        `;
+        
+        dotsContainer.appendChild(dot);
+    }
+    
+    document.body.prepend(dotsContainer);
+    
+    // Add CSS animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) translateX(0) scale(1);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(${Math.random() * 100 - 50}px) scale(0.5);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Initialize floating dots
+createFloatingDots();
+
+// Create gradient mesh animation
+function createGradientMesh() {
+    const meshContainer = document.createElement('div');
+    meshContainer.className = 'gradient-mesh';
+    meshContainer.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.4;
+        background: 
+            radial-gradient(at 20% 30%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
+            radial-gradient(at 80% 70%, rgba(6, 182, 212, 0.15) 0px, transparent 50%),
+            radial-gradient(at 40% 80%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+            radial-gradient(at 60% 20%, rgba(16, 185, 129, 0.1) 0px, transparent 50%);
+        filter: blur(40px);
+        animation: meshMove 20s ease-in-out infinite;
+    `;
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes meshMove {
+            0%, 100% {
+                transform: scale(1) translate(0, 0);
+            }
+            33% {
+                transform: scale(1.1) translate(20px, -20px);
+            }
+            66% {
+                transform: scale(0.95) translate(-20px, 20px);
+            }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    document.body.prepend(meshContainer);
+}
+
+// Initialize gradient mesh
+createGradientMesh();
+
+// Parallax effect for background elements
+let ticking = false;
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            const scrolled = window.pageYOffset;
+            
+            // Parallax for shapes
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach((shape, index) => {
+                const speed = 0.1 + (index * 0.05);
+                shape.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+            
+            // Parallax for floating dots
+            const floatingDots = document.querySelector('.floating-dots');
+            if (floatingDots) {
+                floatingDots.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+            
+            // Parallax for gradient mesh
+            const gradientMesh = document.querySelector('.gradient-mesh');
+            if (gradientMesh) {
+                gradientMesh.style.transform = `translateY(${scrolled * 0.15}px) scale(${1 + scrolled * 0.0001})`;
+            }
+            
+            ticking = false;
+        });
+        
+        ticking = true;
+    }
+});
+
+// Add mouse move parallax effect
+document.addEventListener('mousemove', (e) => {
+    const mouseX = e.clientX / window.innerWidth;
+    const mouseY = e.clientY / window.innerHeight;
+    
+    // Move gradient mesh based on mouse
+    const gradientMesh = document.querySelector('.gradient-mesh');
+    if (gradientMesh) {
+        gradientMesh.style.transform = `translate(${mouseX * 20}px, ${mouseY * 20}px)`;
+    }
+    
+    // Move shapes slightly based on mouse
+    const shapes = document.querySelectorAll('.shape');
+    shapes.forEach((shape, index) => {
+        const speed = 5 + (index * 2);
+        shape.style.transform = `translate(${mouseX * speed}px, ${mouseY * speed}px)`;
+    });
+});
+
+console.log('%c🎨 Enhanced Background Animations Loaded!', 'color: #06b6d4; font-size: 16px; font-weight: bold;');
